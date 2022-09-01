@@ -730,7 +730,7 @@ module CombinePDF
     # this method reviews a Hash and updates it by merging Hash data,
     # preffering the old over the new.
     HASH_UPDATE_PROC_FOR_OLD = Proc.new do |_key, old_data, new_data|
-      if old_data.is_a? Hash
+      if old_data.is_a?(Hash) && old_data != new_data
         old_data.merge(new_data, &HASH_UPDATE_PROC_FOR_OLD)
       else
         old_data
